@@ -1,0 +1,159 @@
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateArticles (20230505093657)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "articles" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "slug" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230505093657"]]
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-05-05 09:37:06.854630"], ["updated_at", "2023-05-05 09:37:06.854630"]]
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mArticle Create (0.1ms)[0m  [1m[32mINSERT INTO "articles" ("title", "content", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Hello world"], ["content", "lorem ipso"], ["slug", "hello-nitesh"], ["created_at", "2023-05-05 09:43:37.823661"], ["updated_at", "2023-05-05 09:43:37.823661"]]
+  [1m[36mTRANSACTION (42.1ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 15:15:08 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/controllers/api/v1/articles_controller.rb:6:in `index'
+Completed 200 OK in 14ms (Views: 6.2ms | ActiveRecord: 0.4ms | Allocations: 38300)
+
+
+Started GET "/api/v1/articles/1" for ::1 at 2023-05-05 15:15:54 +0530
+Processing by Api::V1::ArticlesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/articles_controller.rb:36:in `set_article'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 2722)
+
+
+Started GET "/api/v1/articles/nitesh" for ::1 at 2023-05-05 15:20:31 +0530
+Processing by Api::V1::ArticlesController#nitesh as */*
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 262)
+
+
+Started GET "/api/v1/articles/nitesh" for ::1 at 2023-05-05 15:28:11 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArticlesController#nitesh as */*
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 19384)
+
+
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 15:28:18 +0530
+Processing by Api::V1::ArticlesController#index as */*
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/controllers/api/v1/articles_controller.rb:6:in `index'
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.4ms | Allocations: 18338)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRegistrations (20230505100043)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "registrations" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230505100043"]]
+  [1m[36mTRANSACTION (15.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/v1/registrations?name=Nitesh&email=nb9397@gmail.com&password=[FILTERED]" for ::1 at 2023-05-05 15:42:25 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::RegistrationsController#create as */*
+  Parameters: {"name"=>"Nitesh", "email"=>"nb9397@gmail.com", "password"=>"[FILTERED]"}
+Completed 400 Bad Request in 6ms (ActiveRecord: 0.0ms | Allocations: 21171)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: registration):
+  
+app/controllers/api/v1/registrations_controller.rb:16:in `registration_params'
+app/controllers/api/v1/registrations_controller.rb:7:in `create'
+Started POST "/api/v1/registrations?name=Nitesh&email=nb9397@gmail.com&password=[FILTERED]" for ::1 at 2023-05-05 15:43:10 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::RegistrationsController#create as */*
+  Parameters: {"name"=>"Nitesh", "email"=>"nb9397@gmail.com", "password"=>"[FILTERED]"}
+Started POST "/api/v1/registrations?name=Nitesh&email=nb9397@gmail.com&password=[FILTERED]" for ::1 at 2023-05-05 15:56:49 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::RegistrationsController#create as */*
+  Parameters: {"name"=>"Nitesh", "email"=>"nb9397@gmail.com", "password"=>"[FILTERED]"}
+Completed   in 228718ms (ActiveRecord: 0.3ms | Allocations: 254805)
+
+
+Started POST "/api/v1/registrations?name=Nitesh&email=nb9397@gmail.com&password=[FILTERED]" for ::1 at 2023-05-05 16:03:54 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::RegistrationsController#create as */*
+  Parameters: {"name"=>"Nitesh", "email"=>"nb9397@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:9:in `create'
+  [1m[36mRegistration Create (0.1ms)[0m  [1m[32mINSERT INTO "registrations" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Nitesh"], ["email", "nb9397@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-05-05 10:33:54.986232"], ["updated_at", "2023-05-05 10:33:54.986232"]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (15.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:9:in `create'
+Completed 201 Created in 203ms (Views: 0.3ms | ActiveRecord: 15.5ms | Allocations: 40596)
+
+
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."password_digest" = ? LIMIT ?[0m  [["password_digest", "[FILTERED]"], ["LIMIT", 1]]
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 16:09:02 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArticlesController#index as */*
+Completed   in 43768ms (ActiveRecord: 0.0ms | Allocations: 116980)
+
+
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" ORDER BY "registrations"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 16:11:38 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArticlesController#index as */*
+Completed   in 160821ms (ActiveRecord: 0.0ms | Allocations: 196671)
+
+
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 16:15:39 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArticlesController#index as */*
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."password_digest" = ? LIMIT ?[0m  [["password_digest", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ (rdbg)//home/nitesh/onesta/book/app/controllers/application_controller.rb:1:in `verify_user'
+Completed   in 331927ms (ActiveRecord: 0.4ms | Allocations: 310540)
+
+
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 16:21:21 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/nitesh/onesta/book/app/controllers/application_controller.rb:6: syntax error, unexpected label
+			render json: message: "Not Authorized"
+			             ^~~~~~~~
+):
+  
+app/controllers/application_controller.rb:6: syntax error, unexpected label
+app/controllers/application_controller.rb:6: syntax error, unexpected label
+app/controllers/api/v1/articles_controller.rb:1:in `<main>'
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 16:22:07 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::ArticlesController#index as */*
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."password_digest" = ? LIMIT ?[0m  [["password_digest", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `verify_user'
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/controllers/api/v1/articles_controller.rb:6:in `index'
+Completed 200 OK in 15ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 54054)
+
+
+Started GET "/api/v1/articles" for ::1 at 2023-05-05 16:22:16 +0530
+Processing by Api::V1::ArticlesController#index as */*
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."password_digest" = ? LIMIT ?[0m  [["password_digest", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5:in `verify_user'
+Filter chain halted as :verify_user rendered or redirected
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 595)
+
+
+Started POST "/api/v1/registrations?name=Nitesh2&email=nk9397@gmail.com&password=[FILTERED]&age=23" for ::1 at 2023-05-05 16:24:31 +0530
+Processing by Api::V1::RegistrationsController#create as */*
+  Parameters: {"name"=>"Nitesh2", "email"=>"nk9397@gmail.com", "password"=>"[FILTERED]", "age"=>"23"}
+[31mUnpermitted parameter: :age. Context: { controller: Api::V1::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fd95c00c8e0>, params: {"name"=>"Nitesh2", "email"=>"nk9397@gmail.com", "password"=>"[FILTERED]", "age"=>"23", "controller"=>"api/v1/registrations", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :age. Context: { controller: Api::V1::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fd95c00c8e0>, params: {"name"=>"Nitesh2", "email"=>"nk9397@gmail.com", "password"=>"[FILTERED]", "age"=>"23", "controller"=>"api/v1/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:10:in `create'
+  [1m[36mRegistration Create (0.2ms)[0m  [1m[32mINSERT INTO "registrations" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Nitesh2"], ["email", "nk9397@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-05-05 10:54:31.290112"], ["updated_at", "2023-05-05 10:54:31.290112"]]
+  ↳ app/controllers/api/v1/registrations_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (14.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/registrations_controller.rb:10:in `create'
+Completed 201 Created in 195ms (Views: 0.3ms | ActiveRecord: 15.1ms | Allocations: 3062)
+
+
